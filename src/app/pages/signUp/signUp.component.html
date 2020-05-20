@@ -1,0 +1,300 @@
+<ngx-spinner type="square-jelly-box" [fullScreen]="true" color="#f56036">
+  <p style="font-size: 20px; color: white; margin-top: 100px;">Cargando...</p>
+</ngx-spinner>
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Bienvenido!</h1>
+          <p class="text-lead text-light">
+            Este es una pagina web para demostrar mis capacidades de programador
+            backend.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg
+      x="0"
+      y="0"
+      viewBox="0 0 2560 100"
+      preserveAspectRatio="none"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+          <div class="text-muted text-center mt-2 mb-4">
+            <small>Registrase con</small>
+          </div>
+          <div class="text-center">
+            <a
+              href="javascript:void(0)"
+              (click)="goToFacebookAuth()"
+              class="btn btn-neutral btn-icon mr-4"
+            >
+              <span class="btn-inner--icon"
+                ><img src="assets/img/icons/common/facebook.svg"
+              /></span>
+              <span class="btn-inner--text">Facebook</span>
+            </a>
+            <a
+              href="javascript:void(0)"
+              (click)="goToGoogleAuth()"
+              class="btn btn-neutral btn-icon"
+            >
+              <span class="btn-inner--icon"
+                ><img src="assets/img/icons/common/google.svg"
+              /></span>
+              <span class="btn-inner--text">Google</span>
+            </a>
+          </div>
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <small>O registrate con tus credenciales</small>
+          </div>
+          <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+            <!-- FIRSTNAME -->
+            <div
+              class="text-muted font-italic"
+              *ngIf="validateInput(signUpForm, 'firstname')"
+            >
+              <small>
+                <span class="text-danger font-weight-700"
+                  >Error: Nombre invalido</span
+                >
+              </small>
+            </div>
+            <div class="form-group">
+              <div
+                class="input-group input-group-alternative mb-3 border"
+                [ngClass]="{
+                  'border-danger': validateInput(signUpForm, 'firstname')
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span
+                    class="input-group-text"
+                    [ngClass]="{
+                      'text-danger': validateInput(signUpForm, 'firstname')
+                    }"
+                    ><i class="ni ni-hat-3"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control text-dark"
+                  placeholder="Nombres"
+                  type="text"
+                  name="firstname"
+                  [(ngModel)]="user.firstname"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- LASTNAME -->
+            <div
+              class="text-muted font-italic"
+              *ngIf="validateInput(signUpForm, 'lastname')"
+            >
+              <small>
+                <span class="text-danger font-weight-700"
+                  >Error: Apellido invalido</span
+                >
+              </small>
+            </div>
+            <div class="form-group">
+              <div
+                class="input-group input-group-alternative mb-3 border"
+                [ngClass]="{
+                  'border-danger': validateInput(signUpForm, 'lastname')
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span
+                    class="input-group-text"
+                    [ngClass]="{
+                      'text-danger': validateInput(signUpForm, 'lastname')
+                    }"
+                    ><i class="ni ni-hat-3"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control text-dark"
+                  placeholder="Apellidos"
+                  type="text"
+                  name="lastname"
+                  [(ngModel)]="user.lastname"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div
+              class="text-muted font-italic"
+              *ngIf="validateInput(signUpForm, 'email')"
+            >
+              <small>
+                <span class="text-danger font-weight-700"
+                  >Error: Correo electrónico invalido</span
+                >
+              </small>
+            </div>
+            <div class="form-group">
+              <div
+                class="input-group input-group-alternative mb-3 border"
+                [ngClass]="{
+                  'border-danger': validateInput(signUpForm, 'email')
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span
+                    class="input-group-text"
+                    [ngClass]="{
+                      'text-danger': validateInput(signUpForm, 'email')
+                    }"
+                    ><i class="ni ni-email-83"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control text-dark"
+                  placeholder="Correo electrónico"
+                  type="email"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  minlength="5"
+                  maxlength="254"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- USERNAME -->
+            <div
+              class="text-muted font-italic"
+              *ngIf="validateInput(signUpForm, 'username')"
+            >
+              <small>
+                <span class="text-danger font-weight-700"
+                  >Error: El usuario debe tener un minimo de 6 carácteres y un
+                  maximo de 30</span
+                >
+              </small>
+            </div>
+            <div class="form-group">
+              <div
+                class="input-group input-group-alternative mb-3 border"
+                [ngClass]="{
+                  'border-danger': validateInput(signUpForm, 'username')
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span
+                    class="input-group-text"
+                    [ngClass]="{
+                      'text-danger': validateInput(signUpForm, 'username')
+                    }"
+                    ><i class="ni ni-circle-08"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control text-dark"
+                  placeholder="Usuario"
+                  type="text"
+                  name="username"
+                  [(ngModel)]="user.username"
+                  minlength="6"
+                  maxlength="30"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div
+              class="text-muted font-italic"
+              *ngIf="validateInput(signUpForm, 'password')"
+            >
+              <small>
+                <span class="text-danger font-weight-700"
+                  >Error: La Contraseña debe tener un mínimo de 8 carácteres y
+                  un maximo de 30</span
+                >
+              </small>
+            </div>
+            <div class="form-group">
+              <div
+                class="input-group input-group-alternative border"
+                [ngClass]="{
+                  'border-danger': validateInput(signUpForm, 'password')
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span
+                    class="input-group-text"
+                    [ngClass]="{
+                      'text-danger': validateInput(signUpForm, 'password')
+                    }"
+                    ><i class="ni ni-lock-circle-open"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control text-dark"
+                  placeholder="Contraseña"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  minlength="8"
+                  maxlength="30"
+                  required
+                />
+              </div>
+            </div>
+            <!-- <div class="text-muted font-italic">
+              <small
+                >password strength:
+                <span class="text-success font-weight-700">strong</span></small
+              >
+            </div> -->
+            <!-- <div class="row my-4">
+              <div class="col-12">
+                <div
+                  class="custom-control custom-control-alternative custom-checkbox"
+                >
+                  <input
+                    class="custom-control-input"
+                    id="customCheckRegister"
+                    type="checkbox"
+                  />
+                  <label class="custom-control-label" for="customCheckRegister">
+                    <span class="text-muted"
+                      >I agree with the <a href="#!">Privacy Policy</a></span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div> -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mt-4">
+                Registrarse
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "percyavaurfb"
+  },
+  "targets": {
+    "percyavaurfb": {
+      "hosting": {
+        "argon-dashboard-angular": [
+          "percyavaurfb"
+        ]
+      }
+    }
+  }
+}

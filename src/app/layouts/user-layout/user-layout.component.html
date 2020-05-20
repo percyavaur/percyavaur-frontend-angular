@@ -1,0 +1,22 @@
+<ngx-spinner type="square-jelly-box" [fullScreen]="true" color="#f56036">
+  <p style="font-size: 20px; color: white; margin-top: 100px;">Cargando...</p>
+</ngx-spinner>
+<!-- Sidenav -->
+<app-sidebar
+  (signOut)="onSignOut($event)"
+  *ngIf="!loading"
+  [ROUTES2]="ROUTES2"
+></app-sidebar>
+<div class="main-content">
+  <!-- Top navbar -->
+  <app-navbar
+    (signOut)="onSignOut($event)"
+    *ngIf="!loading"
+    [ROUTES2]="ROUTES2"
+  ></app-navbar>
+  <!-- Pages -->
+  <router-outlet *ngIf="!loading"></router-outlet>
+  <div class="container-fluid">
+    <app-footer></app-footer>
+  </div>
+</div>
